@@ -1,0 +1,8 @@
+Number of devices per OS Version
+
+select
+  operating_system_version as OS,
+  count(*) as Count
+from jamfsoftware.computers_denormalized
+group by OS
+order by Count desc;

@@ -1,0 +1,16 @@
+#This is specifically for use with a grafana variable named schoolname
+#The variable in my case is used as a dropdown and made using the query below from the jamf mysql database.  It only needs to be added once and can be used across by any charts/tables on the dashboard.
+
+select
+DISTINCT(building_name)
+from mobile_devices_denormalized;
+
+#With the school selected from the dropdown then this query will work to get iPadOS Versions by building_name aka schoolname.
+#If you want to make a building specific dashboard just replace $schoolname with the exact building_name from your data.
+
+select
+  os_version,
+  count(*)
+from mobile_devices_denormalized
+where building_name = "$schoolname"
+group by os_version;

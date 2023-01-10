@@ -1,0 +1,6 @@
+select
+model as Model,
+count(*) as Count
+from mobile_devices_denormalized
+group by Model
+order by Count desc;

@@ -1,0 +1,9 @@
+# This gives a count of devices for each mobile device model
+
+select
+  model as Model,
+  count(*) as Count
+from mobile_devices_denormalized
+group by Model
+having Count > 1
+order by Count desc;

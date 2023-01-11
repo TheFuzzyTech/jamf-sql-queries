@@ -1,0 +1,8 @@
+# This gives a count of macOS device counts for each model
+
+select
+  model as Model,
+  count(*) as Count
+from computers_denormalized
+group by Model
+order by Count desc;

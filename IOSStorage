@@ -1,0 +1,8 @@
+# This will give you a list of mobile devices with a storage usage of over 90%
+
+select
+  display_name as name,
+  disk_percent_full as diskspace
+from mobile_devices_denormalized
+having diskspace > 90
+order by diskspace desc;

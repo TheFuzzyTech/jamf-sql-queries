@@ -1,0 +1,234 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 23,
+    "iteration": 1673550621038,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "mysql",
+          "uid": "3Wtunennz"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-GrYlRd"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "displayMode": "basic",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [],
+            "fields": "",
+            "values": true
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "8.4.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "mysql",
+              "uid": "3Wtunennz"
+            },
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "select\n  model as Model,\n  count(*) as Count\nfrom computers_denormalized\nwhere department_name = \"$department\"\ngroup by Model\nhaving Count > 1\norder by Count desc;",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "id"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "certificate_management_metadata",
+            "timeColumn": "not_before_date_time",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "Computer Model",
+        "type": "bargauge"
+      },
+      {
+        "datasource": {
+          "type": "mysql",
+          "uid": "3Wtunennz"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-GrYlRd"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "id": 4,
+        "options": {
+          "displayMode": "basic",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [],
+            "fields": "",
+            "values": true
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "8.4.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "mysql",
+              "uid": "3Wtunennz"
+            },
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "select\n  operating_system_version as OS,\n  count(*) as Count\nfrom computers_denormalized\nwhere department_name = \"$department\"\ngroup by OS\nhaving Count > 1\norder by Count desc;",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "id"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "certificate_management_metadata",
+            "timeColumn": "not_before_date_time",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "Computer OS",
+        "type": "bargauge"
+      }
+    ],
+    "schemaVersion": 35,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": true,
+            "text": "Admin",
+            "value": "Admin"
+          },
+          "datasource": {
+            "type": "mysql",
+            "uid": "3Wtunennz"
+          },
+          "definition": "select DISTINCT(department_name) from computers_denormalized;",
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "department",
+          "options": [],
+          "query": "select DISTINCT(department_name) from computers_denormalized;",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Jamf - by department",
+    "uid": "SvH1pE24z",
+    "version": 14,
+    "weekStart": ""
+  }
